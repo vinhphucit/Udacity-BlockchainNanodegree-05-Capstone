@@ -166,6 +166,7 @@ out       proving.key  verification.key  witness
 # Testing
 
 ```
+cd eth-contracts
 truffle test
 ```
 
