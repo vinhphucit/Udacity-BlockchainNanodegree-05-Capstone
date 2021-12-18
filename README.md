@@ -163,6 +163,11 @@ abi.json  proof.json   square.code       verifier.sol
 out       proving.key  verification.key  witness
 
 ```
+# Testing
+
+```
+truffle test
+```
 
 # Deployment
 
