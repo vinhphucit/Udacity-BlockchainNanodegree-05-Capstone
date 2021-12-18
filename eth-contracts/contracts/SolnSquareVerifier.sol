@@ -6,6 +6,7 @@ import "./verifier.sol";
 // TODO define another contract named SolnSquareVerifier that inherits from your ERC721Mintable class
 
 contract SolnSquareVerifier is ERC721Mintable {
+    using Pairing for *;
 
     Verifier private verifierContract;
 
@@ -13,7 +14,7 @@ contract SolnSquareVerifier is ERC721Mintable {
         address verifierAddress,
         string memory name,
         string memory symbol
-    ) public ERC721Mintable(name, symbol) {        
+    ) public ERC721Mintable(name, symbol) {
         verifierContract = Verifier(verifierAddress);
     }
 
@@ -22,6 +23,7 @@ contract SolnSquareVerifier is ERC721Mintable {
         bool isRegistered;
         uint256 id;
         address from;
+        bool isMinted;
     }
 
     // TODO define an array of the above struct
@@ -32,15 +34,17 @@ contract SolnSquareVerifier is ERC721Mintable {
 
     // TODO Create an event to emit when a solution is added
     event AddedSolution(address from);
+    event MintedSolution(uint256 id, address from);
 
     // TODO Create a function to add the solutions to the array and emit the event
-    function addSolution(  uint[2] memory a,
-        uint[2][2] memory b,
-        uint[2] memory c, uint256[2] memory inputs)
-        private
-    {
+    function addSolution(
+        uint256[2] memory a,
+        uint256[2][2] memory b,
+        uint256[2] memory c,
+        uint256[2] memory inputs
+    ) public {
         bytes32 hashedSolution = keccak256(
-            abi.encodePacked(a, b, c, inputs)
+            abi.encodePacked(inputs[0], inputs[1])
         );
         require(
             !uniqueSolutions[hashedSolution].isRegistered,
@@ -52,7 +56,12 @@ contract SolnSquareVerifier is ERC721Mintable {
             "Solution was verified fail"
         );
 
-        Solution memory sol = Solution(true, solutions.length, msg.sender);
+        Solution memory sol = Solution(
+            true,
+            solutions.length,
+            msg.sender,
+            false
+        );
         uniqueSolutions[hashedSolution] = sol;
         solutions.push(sol);
 
@@ -67,10 +76,11 @@ contract SolnSquareVerifier is ERC721Mintable {
 
         Solution storage sol = uniqueSolutions[hashedInput];
         require(sol.from != address(0x0), "Solution Not Exist");
-        require(!sol.isRegistered, "Solution Was Registered");
+        require(!sol.isMinted, "Solution Was Minted");
         require(sol.from == msg.sender, "You did not create this solution");
-
+        sol.isMinted = true;
         super._mint(to, sol.id);
         setTokenURI(sol.id);
+        emit MintedSolution(sol.id, sol.from);
     }
 }

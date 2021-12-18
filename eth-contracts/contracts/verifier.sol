@@ -5,7 +5,6 @@
 // The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 pragma solidity >=0.4.21 <0.6.0;
-pragma experimental ABIEncoderV2;
 
 library Pairing {
     struct G1Point {
@@ -339,12 +338,11 @@ contract Verifier {
         uint256[2] memory c,
         uint256[2] memory input
     ) public view returns (bool r) {
+        uint256[] memory inputValues = new uint256[](2);
         Proof memory proof;
         proof.a = Pairing.G1Point(a[0], a[1]);
         proof.b = Pairing.G2Point([b[0][0], b[0][1]], [b[1][0], b[1][1]]);
         proof.c = Pairing.G1Point(c[0], c[1]);
-        uint256[] memory inputValues = new uint256[](2);
-
         for (uint256 i = 0; i < input.length; i++) {
             inputValues[i] = input[i];
         }

@@ -14,7 +14,7 @@ contract Ownable {
     //  4) fill out the transferOwnership function
     //  5) create an event that emits anytime ownerShip is transfered (including in the constructor)
 
-    address public _owner;
+    address private _owner;
 
     constructor() internal {
         transferOwnership(msg.sender);
@@ -30,13 +30,17 @@ contract Ownable {
 
     event OwnerShipTransfer(address previousOwner, address newOwner);
 
+    function getOwner() external view returns (address) {
+        return _owner;
+    }
+
     function transferOwnership(address newOwner) public onlyOwner {
         // TODO add functionality to transfer control of the contract to a newOwner.
         // make sure the new owner is a real address
         require(newOwner != address(0x0), "New owner must be a real address");
         if (_owner != newOwner) {
             address previousOwner = _owner;
-            emit OwnerShipTransfer(previousOwner, _owner);
+            emit OwnerShipTransfer(previousOwner, newOwner);
             _owner = newOwner;
         }
     }
@@ -510,6 +514,8 @@ contract ERC721Enumerable is ERC165, ERC721 {
         _allTokens.push(tokenId);
     }
 
+    event PushNewToken(uint256 newToken, uint256 totalToken);
+
     /**
      * @dev Private function to remove a token from this extension's ownership-tracking data structures. Note that
      * while the token is not assigned a new owner, the _ownedTokensIndex mapping is _not_ updated: this allows for
@@ -648,12 +654,12 @@ contract ERC721Mintable is ERC721Metadata {
         )
     {}
 
-    function mint(
-        address to,
-        uint256 tokenId,
-        string memory tokenURI
-    ) public onlyOwner returns (bool isCompleted) {
-        _mint(to, tokenId);
+    function mint(address to, uint256 tokenId)
+        public
+        onlyOwner
+        returns (bool isCompleted)
+    {
+        super._mint(to, tokenId);
         setTokenURI(tokenId);
         return true;
     }
