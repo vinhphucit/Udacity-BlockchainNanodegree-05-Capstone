@@ -167,7 +167,7 @@ out       proving.key  verification.key  witness
 # Deployment
 
 ```
-truffle migrate --reset --network ropsten
+truffle migrate --network rinkeby
 
 Compiling your contracts...
 ===========================
@@ -177,9 +177,9 @@ Compiling your contracts...
 
 Starting migrations...
 ======================
-> Network name:    'ropsten'
-> Network id:      3
-> Block gas limit: 8000000 (0x7a1200)
+> Network name:    'rinkeby'
+> Network id:      4
+> Block gas limit: 29941438 (0x1c8debe)
 
 
 1_initial_migration.js
@@ -187,27 +187,65 @@ Starting migrations...
 
    Deploying 'Migrations'
    ----------------------
-   > transaction hash:    0xcb8e149997a76d58aa45b0e045ff5412a5a288971b9bc7b1764f736b8c59dd48
-   > Blocks: 1            Seconds: 33
-   > contract address:    0xDA1D013421633C3fb9e392b70b110B79c4220C04
-   > block number:        11641627
-   > block timestamp:     1639797056
-   > account:             0x68913EdB78a8FfC8f8b86E4c77329302abe1308B
-   > balance:             5.26892886241290173
+
+Error:  *** Deployment Failed ***
+
+"Migrations" -- Unknown address - unable to sign transaction for this address: "0x6715755e1262f4120d86ff9258dcbbe61062399f".
+
+    at /Users/phuc.tran/.nvm/versions/node/v14.15.0/lib/node_modules/truffle/build/webpack:/packages/deployer/src/deployment.js:365:1
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at Migration._deploy (/Users/phuc.tran/.nvm/versions/node/v14.15.0/lib/node_modules/truffle/build/webpack:/packages/migrate/Migration.js:70:1)
+    at Migration._load (/Users/phuc.tran/.nvm/versions/node/v14.15.0/lib/node_modules/truffle/build/webpack:/packages/migrate/Migration.js:56:1)
+    at Migration.run (/Users/phuc.tran/.nvm/versions/node/v14.15.0/lib/node_modules/truffle/build/webpack:/packages/migrate/Migration.js:217:1)
+    at Object.runMigrations (/Users/phuc.tran/.nvm/versions/node/v14.15.0/lib/node_modules/truffle/build/webpack:/packages/migrate/index.js:150:1)
+    at Object.runFrom (/Users/phuc.tran/.nvm/versions/node/v14.15.0/lib/node_modules/truffle/build/webpack:/packages/migrate/index.js:110:1)
+    at Object.run (/Users/phuc.tran/.nvm/versions/node/v14.15.0/lib/node_modules/truffle/build/webpack:/packages/migrate/index.js:87:1)
+    at runMigrations (/Users/phuc.tran/.nvm/versions/node/v14.15.0/lib/node_modules/truffle/build/webpack:/packages/core/lib/commands/migrate.js:258:1)
+    at Object.run (/Users/phuc.tran/.nvm/versions/node/v14.15.0/lib/node_modules/truffle/build/webpack:/packages/core/lib/commands/migrate.js:223:1)
+    at Command.run (/Users/phuc.tran/.nvm/versions/node/v14.15.0/lib/node_modules/truffle/build/webpack:/packages/core/lib/command.js:183:1)
+Truffle v5.4.21 (core: 5.4.21)
+Node v14.15.0
+Phucs-MacBook-M1:eth-contracts phuc.tran$ truffle migrate --network rinkeby
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+
+
+Starting migrations...
+======================
+> Network name:    'rinkeby'
+> Network id:      4
+> Block gas limit: 29970649 (0x1c950d9)
+
+
+1_initial_migration.js
+======================
+
+   Deploying 'Migrations'
+   ----------------------
+   > transaction hash:    0xa7f2bde166906ae24b6748fb5c6cc027f90f750edb765e0af7594f39a7f62f07
+   > Blocks: 7            Seconds: 110
+   > contract address:    0xfF8F8a352dA66Db62CB743067C739638A41e9e5F
+   > block number:        9834901
+   > block timestamp:     1639818241
+   > account:             0x77b08f490B79B654E21FF3d97FAeAdB32B439a13
+   > balance:             1.499763741997873678
    > gas used:            236258 (0x39ae2)
-   > gas price:           1.602505326 gwei
+   > gas price:           1.000000009 gwei
    > value sent:          0 ETH
-   > total cost:          0.000378604703310108 ETH
+   > total cost:          0.000236258002126322 ETH
 
    Pausing for 2 confirmations...
    ------------------------------
-   > confirmation number: 1 (block: 11641628)
-   > confirmation number: 3 (block: 11641630)
+   > confirmation number: 1 (block: 9834906)
+   > confirmation number: 2 (block: 9834907)
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:     0.000378604703310108 ETH
+   > Total cost:     0.000236258002126322 ETH
 
 
 2_deploy_contracts.js
@@ -215,58 +253,75 @@ Starting migrations...
 
    Deploying 'Verifier'
    --------------------
-   > transaction hash:    0xb9b92caac302c7df594ceebcb581dff8719638d0c95439defd21bff8f6dad251
-   > Blocks: 1            Seconds: 41
-   > contract address:    0x8c2DBB94bdc8a6bee0f7910b6a7BeC05206Ec4eA
-   > block number:        11641633
-   > block timestamp:     1639797151
-   > account:             0x68913EdB78a8FfC8f8b86E4c77329302abe1308B
-   > balance:             5.267233571611891822
+   > transaction hash:    0x9238429c6139edeb8afc842dafb01802b20c2f1bfe58a2172021058d83012e24
+   > Blocks: 3            Seconds: 67
+   > contract address:    0x3DEC3E6225Fe5a75AACcA448A1f85B1a307a0095
+   > block number:        9834920
+   > block timestamp:     1639818526
+   > account:             0x77b08f490B79B654E21FF3d97FAeAdB32B439a13
+   > balance:             1.49870635998835724
    > gas used:            1011614 (0xf6f9e)
-   > gas price:           1.60329077 gwei
+   > gas price:           1.000000009 gwei
    > value sent:          0 ETH
-   > total cost:          0.00162191138900278 ETH
+   > total cost:          0.001011614009104526 ETH
 
    Pausing for 2 confirmations...
    ------------------------------
-   > confirmation number: 1 (block: 11641634)
-   > confirmation number: 2 (block: 11641635)
+   > confirmation number: 1 (block: 9834924)
+   > confirmation number: 2 (block: 9834925)
 
    Deploying 'SolnSquareVerifier'
    ------------------------------
-   > transaction hash:    0x0dc286d026fe0d6e72de11af4b399dffa43fb2951ef76bd1c108245c3abcc8aa
-   > Blocks: 2            Seconds: 21
-   > contract address:    0x07181B3a9cf762F956D7e60Fea09d9C2C6Be4c9C
-   > block number:        11641638
-   > block timestamp:     1639797258
-   > account:             0x68913EdB78a8FfC8f8b86E4c77329302abe1308B
-   > balance:             5.261300050601935792
-   > gas used:            3700839 (0x387867)
-   > gas price:           1.60329077 gwei
+   > transaction hash:    0xcf455e5599a4652bac6d780625affee1595901713b9204a2ba91d421d9585c59
+   > Blocks: 5            Seconds: 64
+   > contract address:    0x7c7b0A36D991E0DCe1d945452314875d3c5a9A5b
+   > block number:        9834930
+   > block timestamp:     1639818676
+   > account:             0x77b08f490B79B654E21FF3d97FAeAdB32B439a13
+   > balance:             1.495005532955049797
+   > gas used:            3700827 (0x38785b)
+   > gas price:           1.000000009 gwei
    > value sent:          0 ETH
-   > total cost:          0.00593352100995603 ETH
+   > total cost:          0.003700827033307443 ETH
 
    Pausing for 2 confirmations...
    ------------------------------
-   > confirmation number: 1 (block: 11641639)
-   > confirmation number: 2 (block: 11641640)
+   > confirmation number: 1 (block: 9834933)
+   > confirmation number: 2 (block: 9834934)
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:     0.00755543239895881 ETH
+   > Total cost:     0.004712441042411969 ETH
 
 
 Summary
 =======
 > Total deployments:   3
-> Final cost:          0.007934037102268918 ETH
+> Final cost:          0.004948699044538291 ETH
+
 ```
 
 ##### Contract Address
 
 ```
-0x07181B3a9cf762F956D7e60Fea09d9C2C6Be4c9C
+0x7c7b0A36D991E0DCe1d945452314875d3c5a9A5b
+```
+
+#### OpenSea
+
+```
+https://testnets.opensea.io/assets/uda-solnsquaretoken
+```
+
+#### Transactions
+
+```
+https://testnets.opensea.io/assets/0x7c7b0a36d991e0dce1d945452314875d3c5a9a5b/1/
+https://testnets.opensea.io/assets/0x7c7b0a36d991e0dce1d945452314875d3c5a9a5b/2/
+https://testnets.opensea.io/assets/0x7c7b0a36d991e0dce1d945452314875d3c5a9a5b/3/
+https://testnets.opensea.io/assets/0x7c7b0a36d991e0dce1d945452314875d3c5a9a5b/4/
+https://testnets.opensea.io/assets/0x7c7b0a36d991e0dce1d945452314875d3c5a9a5b/5/
 ```
 
 ##### Contract ABI

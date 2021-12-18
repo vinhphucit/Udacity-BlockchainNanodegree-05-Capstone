@@ -31309,7 +31309,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-12-18T03:10:19.024Z",
+  "updatedAt": "2021-12-18T10:08:23.760Z",
   "devdoc": {
     "methods": {
       "isApprovedForAll(address,address)": {
